@@ -13,7 +13,7 @@ Your goal is to design a resilient backend that:
 1. The external weather API is limited to 100 requests per hour.
 2. The external weather API returns detailed weather data for a given city on the current day everytime it's called. As shown in the example
 3. You must support approx. 100,000 daily active users across approx. 2,500 different cities across the globe. Users use the service at any time throughout the day.
-4. User authentication and external API authentication are out of scope. Simply response will be open to any call  and assume the external API will reply to requests coming from our cluster according to the limit mentioned in 1.
+4. User authentication and external API authentication are out of scope of this task. Simply assume that the API you develop will be open to any call and the external weather API will reply to requests coming from our cluster according to the limit mentioned in 1.
 
 
 Example of External API response per city 
@@ -47,9 +47,9 @@ Response:
 
 🧪 Acceptance Criteria
 - You may use any programming language. Even pseudocode or a clearly structured functional design (e.g. flowchart-style logic) is acceptable — what matters is the clarity and quality of your technical design and solution.
-- You may mock any libraries or databases. The focus is not third-party integeration.
+- You may mock any libraries or databases you need. The focus is not on third-party integerations.
 - Write down any assumptions — either as comments in the code or as side notes in a document.
-- Clearly describe the input and output of each major function in your solution. This helps us understand your reasoning behind your technical design.
+- Clearly describe the input and output of each major function/step in your solution. This helps us understand your reasoning behind your technical design.
 - Expand the response object: the example provided is minimal. Based on your experience, design a response that communicates effectively with the frontend/UI.
 
 
