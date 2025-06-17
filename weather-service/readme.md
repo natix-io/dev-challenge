@@ -46,7 +46,7 @@ Response:
 
 
 🧪 Acceptance Criteria
-- You may use any programming language. Even pseudocode or a clearly structured functional design (e.g. flowchart-style logic) is acceptable — what matters is the clarity and quality of your technical design and solution.
+- You may use any programming language. Even pseudocode or structured texts (e.g. workflow-style logic in written fromat) is acceptable — what matters is the clarity and quality of your technical design and solution.
 - You may mock any libraries or databases you need. The focus is not on third-party integerations.
 - Write down any assumptions — either as comments in the code or as side notes in a document.
 - Clearly describe the input and output of each major function/step in your solution. This helps us understand your reasoning behind your technical design.
