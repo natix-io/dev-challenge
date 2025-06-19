@@ -11,7 +11,7 @@ Imagine you’re designing and maintaining an internal or public-facing **Weathe
     { "hour": 0, "temperature": "18", "condition": "Clear" },
     { "hour": 1, "temperature": "17", "condition": "Clear" },
     ...
-    { "hour": 23", "temperature": "16", "condition": "Cloudy" }
+    { "hour": 23, "temperature": "16", "condition": "Cloudy" }
  ]
 }
 ```
