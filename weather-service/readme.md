@@ -50,7 +50,7 @@ Response:
   
 
 
-🧪 Acceptance Criteria
+## 🧪 Acceptance Criteria
 - You may use any programming language. Even pseudocode or structured texts (e.g. workflow-style logic in written fromat) is acceptable — what matters is the clarity and quality of your technical design and solution.
 - You may mock any libraries or databases you need. The focus is not on third-party integerations.
 - Write down any assumptions — either as comments in the code or as side notes in a document.
