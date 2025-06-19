@@ -38,6 +38,11 @@ Describe how a team can **detect breaking changes early**, in your experince. pl
 What internal **policy/process** was established to manage schema changes safely, in your previous team?
 
 
+## 🧪 Acceptance Criteria
+- Answer these four questions thoroughly – at least one paragraph each, maximum half a page.
+- Provide practical examples from your own experience. Don’t just rely on ChatGPT’s first suggestion — dig deeper!
+
+
 
 
 
