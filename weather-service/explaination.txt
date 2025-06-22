@@ -1,0 +1,69 @@
+Assumptions:
+- External Weather API Rate Limit: 100 requests/hour shared across all cities
+- User Load: 100,000 Daily Active Users, randomly distributed throughout the day
+- No user-specific auth needed; we only care about city-level weather data
+- Weather Data: hourly or daily caching is acceptable (weather doesn’t change minute-to-minute)
+- Caching: We can use an in-memory or distributed cache (like Redis), and optionally a persistent store (like a DB)
+
+System Architecture Overview :
+============================================================================================
+
+# Sequence Diagram - Design Flow (https://www.websequencediagrams.com/):
+
+title Weather Service – Sequence Diagram
+
+participant Frontend
+participant WeatherService
+participant Cache
+participant ExternalWeatherAPI
+
+Frontend->WeatherService: GET /weather?city=CityName
+WeatherService->Cache: Get("weather:CityName")
+Cache-->WeatherService: CachedData?
+
+alt Cache hit and fresh
+    WeatherService->Frontend: Return cached response (stale: false)
+else Cache miss or stale
+    alt Under rate limit
+        WeatherService->ExternalWeatherAPI: fetchWeather(CityName)
+        ExternalWeatherAPI-->WeatherService: Weather data
+        WeatherService->Cache: Set("weather:CityName", data)
+        WeatherService->Frontend: Return fresh response (stale: false)
+    else Rate limit exceeded
+        alt Stale cache available
+            WeatherService->Frontend: Return cached response (stale: true)
+        else No cache available
+            WeatherService->Frontend: Return 503 Service Unavailable
+        end
+    end
+end
+
+
+# Flow Diagram - Weather Service
+
+1. User hits GET /weather?city=Paris
+
+2. Backend:
+    - Validates city
+    - Checks cache:
+        - Fresh: return cached data.
+        - Stale/Empty:
+            - Check rate limiter:
+                - Under limit: call external API, update cache, return result.
+                - Over limit: use stale cache if available; otherwise return error.
+
+3. Return formatted weather data.
+
+
+# Components Breakdown
+
+- AWS API Gateway (exposes endpoint to users)
+    - Exposes endpoint
+    - Handles throttling, security, logging
+    - Integration with Lambda
+    - Handle authorization (not required for our use case)
+- AWS Lambda (This will contain weather service code)
+    - Process the request
+    - Integration with ElastiCache (GET and SET weather data and rate limiting data)
+    - Integration with External Weather API Call
+- AWS ElastiCache for Redis (This will store weather data and will be tracking external API counts as well for rate limiting purpose)
