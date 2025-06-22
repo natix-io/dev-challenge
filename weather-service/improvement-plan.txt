@@ -1,0 +1,33 @@
+# Weather Service – Scheduler-Based Cache Pre-Fetching
+------------------------------------------------------------------
+
+1. Objective
+- Scheduler service to proactively cache weather data for cities throughout the day, 
+reducing real-time dependency on the external weather API and minimizing user-facing latency
+
+2. Scheduler Design Overview
+- Use AWS EventBridge Scheduler to trigger a Lambda function every 15 minutes
+- Each run of the scheduler processes a fixed batch of cities (e.g., 25 cities)
+- Scheduler rotates through the entire list of cities in a 24-hour cycle
+- For each city in the batch:
+    - It calls the external weather API
+    - Stores the result in Redis using the key format weather:<city> with a TTL of 1 hour
+
+3. Pre-Caching Rotation Strategy
+
+- Frequency: Every 15 minutes (4 runs/hour)
+- Max API Calls per Run: 25
+- Total API Calls per Hour: 100 (compliant with rate limit)
+- Total Cities Covered Daily: 2,400–2,500 (25 cities × 4 runs/hour × 24 hours)
+
+4. Benefits
+
+- Ensures hot cache availability for city weather data across the day.
+- Reduces cold API calls during real user requests.
+- Ensures system stays within external API rate limits.
+
+5. Further enhancements
+
+- Prioritizing high-traffic cities more frequently
+- Retry logic with exponential backoff
+- Support for manual trigger for refresh
