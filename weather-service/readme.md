@@ -55,7 +55,7 @@ Response:
 - You may mock any libraries or databases you need. The focus is not on third-party integerations.
 - Write down any assumptions — either as comments in the code or as side notes in a document.
 - Clearly describe the input and output of each major function/step in your solution. This helps us understand your reasoning behind your technical design.
-- Expand the response object: the example provided is minimal. Based on your experience, design a response that communicates effectively with the frontend/UI.
+- Improve the response object: the example provided is minimal. Based on your experience, design a response that communicates effectively with the frontend/UI.
 
 
 
